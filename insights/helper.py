@@ -74,5 +74,5 @@ def attribution_window(num_of_days: int):
             for ed in get_execution_dates(execution_date, num_of_days):
                 print(f"execution_date: {ed}")
                 pull_data_func(ed, *args, **kwargs)
-            return wrapper
+        return wrapper
     return decorator

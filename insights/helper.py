@@ -69,10 +69,10 @@ def attribution_window(num_of_days: int):
     :return: a wrapper of pull_data_func
     :rtype: Callable[[datetime.date, str, dict], None]
     """
-    def decorator(pull_data_func: Callable[[datetime.date, str, dict], None]) -> Callable[[datetime.date, str, dict], None]:
-        def wrapper(execution_date: datetime.date, version: str, config: dict):
+    def decorator(pull_data_func):
+        def wrapper(execution_date, *args, **kwargs):
             for ed in get_execution_dates(execution_date, num_of_days):
                 print(f"execution_date: {ed}")
-                pull_data_func(ed, version, config)
+                pull_data_func(ed, *args, **kwargs)
             return wrapper
     return decorator

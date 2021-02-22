@@ -39,7 +39,7 @@ def read_yaml(path:str) -> dict:
 
 
 
-def get_execution_dates(execution_date: str, attribution_window: int):
+def get_execution_dates(execution_date: datetime.date, attribution_window: int):
     """Generator function taking one execution_date and yielding a list of execution_dates with attribution in consideration
 
     :param execution_date: the specific date when data is pulled
@@ -49,9 +49,6 @@ def get_execution_dates(execution_date: str, attribution_window: int):
     :yield: execution_date up to the beginning of the attribution window
     :rtype: datetime.date
     """
-    # convert execution_date from string to datetime.date
-    execution_date = datetime.date.fromisoformat(execution_date)
-
     # TODO. logic needs to be refined if the granularity is hourly not daily
     # if it is older than attribution_window, then no attribution run has to be considered
     beginning_of_attribution_window = datetime.date.today() - datetime.timedelta(attribution_window)
@@ -64,7 +61,7 @@ def get_execution_dates(execution_date: str, attribution_window: int):
             yield execution_date - datetime.timedelta(days=n)
 
 
-def attribution_window(pull_data_func: Callable[[datetime.date, str, dict], None]) -> Callable[[datetime.date, str, dict], None]:
+def attribution_window(num_of_days: int):
     """Decorator to handle data source attribution window 
 
     :param pull_data_func: function to pull data from source
@@ -72,9 +69,10 @@ def attribution_window(pull_data_func: Callable[[datetime.date, str, dict], None
     :return: a wrapper of pull_data_func
     :rtype: Callable[[datetime.date, str, dict], None]
     """
-    def wrapper(execution_date: datetime.date, version: str, config: dict):
-        #TODO: refactor attribution window as a parameter
-        for ed in get_execution_dates(execution_date, 7):
-            print(f"execution_date: {ed}")
-            pull_data_func(ed, version, config)
-    return wrapper
+    def decorator(pull_data_func: Callable[[datetime.date, str, dict], None]) -> Callable[[datetime.date, str, dict], None]:
+        def wrapper(execution_date: datetime.date, version: str, config: dict):
+            for ed in get_execution_dates(execution_date, num_of_days):
+                print(f"execution_date: {ed}")
+                pull_data_func(ed, version, config)
+            return wrapper
+    return decorator

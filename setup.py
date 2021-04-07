@@ -1,8 +1,8 @@
 from setuptools import setup
 
 setup(
-    name='insights',
+    name='rubixinsights',
     version='0.0.1',
-    description='insights',
-    packages=['insights'],
+    description='rubix-insights',
+    packages=['rubixinsights'],
 )

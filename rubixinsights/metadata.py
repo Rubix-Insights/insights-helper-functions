@@ -30,7 +30,7 @@ class Metadata:
         """ Print out all the related information """
         # read table
         table = pd.read_sql(
-            sql = f"select * from {self.table_name}",
+            sql = f"select * from metadata.{self.table_name}",
             con = self.engine
         )
         return table
@@ -39,7 +39,7 @@ class Metadata:
         response = self._get_connection().execute(
             f""" 
                  SELECT last_modified
-                 FROM {self.table_name} 
+                 FROM metadata.{self.table_name} 
                  WHERE account = '{account}' 
                  AND report_name = '{report_name}'
                  AND execution_date = '{execution_date}'
@@ -62,7 +62,7 @@ class Metadata:
         try:
             self._get_connection().execute(
                 f"""
-                    INSERT INTO {self.table_name} (account, report_name, execution_date, last_modified)
+                    INSERT INTO metadata.{self.table_name} (account, report_name, execution_date, last_modified)
                     VALUES('{account}', '{report_name}', '{execution_date}', '{now}')
                     ON CONFLICT ON CONSTRAINT unique_constraint 
                     DO UPDATE SET

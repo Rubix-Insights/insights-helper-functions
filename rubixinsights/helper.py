@@ -3,7 +3,7 @@ import datetime
 import yaml
 import boto3
 
-def get_secret_value_from_ssm(secret_name: str, client: boto3.client) -> str:
+def get_value_from_ssm(name: str, client: boto3.client) -> str:
     """Get secret value from AWS parameter store
 
     :param secret_name: [description]
@@ -14,12 +14,12 @@ def get_secret_value_from_ssm(secret_name: str, client: boto3.client) -> str:
     :rtype: str
     """    
     response = client.get_parameter(
-      Name = secret_name,
+      Name = name,
       WithDecryption = True
     )
 
-    secret_value = response['Parameter']['Value']
-    return secret_value
+    value = response['Parameter']['Value']
+    return value
 
 
 def read_yaml(path:str) -> dict:
@@ -76,3 +76,10 @@ def attribution_window(num_of_days: int):
                 pull_data_func(ed, *args, **kwargs)
         return wrapper
     return decorator
+
+
+def extract_components_from_execution_date(execution_date: datetime.date):
+    year = execution_date.strftime("%Y")
+    month = execution_date.strftime("%m")
+    day = execution_date.strftime("%d")
+    return year, month, day

@@ -6,3 +6,4 @@ from .helper import (
     extract_components_from_execution_date
 )
 from .metadata import Metadata
+from .secrets_engine import SecretsManager

@@ -206,6 +206,7 @@ class SecretsManager:
           credential['developer_token'] = self._adwords_get_developer_token(self.client, environment)
           credential['refresh_token'] = self._adwords_get_refresh_token(id)
       if channel == 'shopify':
+          credential = {}
           shop_url = f"{id}.myshopify.com"
           access_token = self._shopify_get_access_token(id)
           session = shopify.Session(shop_url, SHOPIFY_API_VERSION, access_token)

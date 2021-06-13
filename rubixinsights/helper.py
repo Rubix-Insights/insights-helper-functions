@@ -33,8 +33,12 @@ def read_yaml(path:str) -> dict:
     try:
         with open(path, 'r') as metadata:
             conf = yaml.safe_load(metadata)
-    except yaml.YAMLError as err:
-        print(err)
+    except yaml.YAMLError as e:
+        print(e)
+        raise
+    except FileNotFoundError as e:
+        print(f"File Not Found: {e}")
+        raise
     return conf
 
 

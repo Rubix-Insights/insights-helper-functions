@@ -8,12 +8,6 @@ from .secrets_engine import SecretsManager
 from .helper import get_value_from_ssm, read_yaml
 
 
-execution_date = os.environ.get('execution_date')
-execution_date = datetime.date.fromisoformat(execution_date)
-print(execution_date)
-config = read_yaml('metadata.yaml')
-
-
 class Initializer:
     def __init__(self, 
                  channel: str, 

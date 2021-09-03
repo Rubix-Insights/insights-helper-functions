@@ -5,7 +5,6 @@ from .helper import get_value_from_ssm
 import requests
 import json
 import google.oauth2.credentials
-import shopify
 
 # AWS Credential
 AWS_REGION = 'us-east-1'
@@ -206,6 +205,7 @@ class SecretsManager:
           credential['developer_token'] = self._adwords_get_developer_token(self.client, environment)
           credential['refresh_token'] = self._adwords_get_refresh_token(id)
       if channel == 'shopify':
+          import shopify
           credential = {}
           shop_url = f"{id}.myshopify.com"
           access_token = self._shopify_get_access_token(id)

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rubixinsights"
-version = "0.0.19"
+version = "0.0.30"
 description = "rubixin-sights"
 authors = ["rubix"]
 readme = "README.md"
@@ -19,6 +19,7 @@ googleapis-common-protos = "1.52.0"
 google-auth-oauthlib = "0.4.2"
 google-api-core = "1.26.0"
 google-api-python-client = "1.12.8"
+Jinja2 = "^2.11.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.3"

@@ -26,8 +26,5 @@ class Provider:
 
 
 if __name__ == '__main__':
-    username = 'rohan+api@rubixagency.com'
-    password = 'AeUDm6Bp7d2jqJE6'
-    stack = 'rubix'
-    p = Provider(stack=stack, username=username, password=password)
+    p = Provider(stack='rubix', username='rohan+api@rubixagency.com', password='AeUDm6Bp7d2jqJE6')
     print(p.get_token())

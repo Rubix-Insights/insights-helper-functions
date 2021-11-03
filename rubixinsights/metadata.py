@@ -2,9 +2,12 @@ from sqlalchemy import create_engine
 import pandas as pd
 import datetime
 from collections import namedtuple
+
+from sqlalchemy.engine.base import Connection
 from .helper import get_value_from_ssm
 from .sqs import get_sqs_messages
 from typing import Tuple
+from loguru import logger
 import boto3
 
 
@@ -92,8 +95,8 @@ class Metadata:
             DO UPDATE SET
                 last_modified = excluded.last_modified
         """
-        print(sql_statement)
-        print('update_as_succeeded')
+        logger.debug(sql_statement)
+        logger.info('update_as_succeeded')
         try:
             self._get_connection().execute(sql_statement)
         except Exception as e:

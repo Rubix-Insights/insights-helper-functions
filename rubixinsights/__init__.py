@@ -6,7 +6,7 @@ from .helper import (
     extract_components_from_execution_date,
     migrate_table
 )
-from .metadata import Metadata, register_pipeline_success_wrapper
+from .metadata import Metadata, register_pipeline_success_wrapper, register_pipeline_success_wrapper_v2
 from .secrets_engine import SecretsManager
 from .initializer import Initializer
 from .slack import report_failure_to_slack_wrapper, write_message_to_slack

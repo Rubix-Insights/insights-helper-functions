@@ -162,12 +162,12 @@ if __name__ == '__main__':
     print(results)
 
     # create connection
-    try:
-        connection_factory.create_connection('739', 1,  'act_319883982')
-    except:
-        pass
+    # try:
+    #     connection_factory.create_connection('739', 1,  'act_319883982')
+    # except:
+    #     pass
 
-    # update connection token
-    test_connection = Connection(1, '739', 21, 'test1')
-    new_token = 'EAAhMVyE1D1kBAOVnBJadfloQJiuVZAzfzHE4jnYfMbKYNBrH1Iu3OZBXWfXsIZAtI1fVZAYCwqyOoxQpDKkcW0jdULTZAyGbH3fu5oUaMs7i6PXoo0yEiEo9G3e1QaRTEDCZBrLkxMqpC7tFmXE364M1jzV4KgwOKQWpOqcb4YCNaacwhJxs9a'
-    connection_factory.update_connection_token(test_connection, new_token)
+    # # update connection token
+    # test_connection = Connection(1, '739', 21, 'test1')
+    # new_token = 'EAAhMVyE1D1kBAOVnBJadfloQJiuVZAzfzHE4jnYfMbKYNBrH1Iu3OZBXWfXsIZAtI1fVZAYCwqyOoxQpDKkcW0jdULTZAyGbH3fu5oUaMs7i6PXoo0yEiEo9G3e1QaRTEDCZBrLkxMqpC7tFmXE364M1jzV4KgwOKQWpOqcb4YCNaacwhJxs9a'
+    # connection_factory.update_connection_token(test_connection, new_token)

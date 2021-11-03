@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rubixinsights"
-version = "0.0.32"
+version = "0.0.35"
 description = "rubixin-sights"
 authors = ["rubix"]
 readme = "README.md"

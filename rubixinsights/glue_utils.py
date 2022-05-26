@@ -40,7 +40,7 @@ def deduplication(
                 *dimensions,
                 execution_time_column_name,
                 *additional_columns,
-                *[col(metric).alias(metric) for metric in metrics],
+                *[col(metric).alias(metric.strip("`")) for metric in metrics],
             )
         )
     # deduplication
@@ -66,3 +66,12 @@ def write_dataframe_to_s3(df, target_path, timestamp_column_name, account_column
     ).parquet(
         target_path
     )
+
+
+def fix_schema(sf, schema_dict):
+    for (col_name, col_type) in schema_dict.items():
+        sf = sf.withColumn(
+            col_name,
+            col(col_name).cast(col_type),
+        )
+    return sf

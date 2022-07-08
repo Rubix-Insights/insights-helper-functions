@@ -75,3 +75,9 @@ def fix_schema(sf, schema_dict):
             col(col_name).cast(col_type),
         )
     return sf
+
+
+def rename_columns(df, column_mappings):
+    for k, v in column_mappings.items():
+        df = df.withColumnRenamed(k, v)
+    return df
